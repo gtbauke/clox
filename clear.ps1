@@ -1,2 +1,2 @@
 rm -r -Force *.o
-rm -r -Force ./clox.exe
+# rm -r -Force ./clox.exe

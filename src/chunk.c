@@ -33,6 +33,23 @@ void writeChunk(Chunk *chunk, uint8_t byte, int line) {
   chunk->count++;
 }
 
+void writeConstant(Chunk *chunk, Value value, int line) {
+  int index = addConstant(chunk, value);
+
+  // if index is less than one byte long, use OP_CONSTANT
+  // else, use OP_LONG_CONSTANT and store the long using
+  // little endian encoding
+  if (index < 256) {
+    writeChunk(chunk, OP_CONSTANT, line);
+    writeChunk(chunk, (uint8_t)index, line);
+  } else {
+    writeChunk(chunk, OP_LONG_CONSTANT, line);
+    writeChunk(chunk, (uint8_t)(index & 0xff), line);
+    writeChunk(chunk, (uint8_t)((index >> 8) & 0xff), line);
+    writeChunk(chunk, (uint8_t)((index >> 16) & 0xff), line);
+  }
+}
+
 int addConstant(Chunk *chunk, Value value) {
   writeValueArray(&chunk->constants, value);
   return chunk->constants.count - 1;
