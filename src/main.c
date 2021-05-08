@@ -39,7 +39,7 @@ static char* readFile(const char *path) {
 static void repl() {
   char line[1024];
   for (;;) {
-    prtinf("> ");
+    printf("> ");
 
     if (!fgets(line, sizeof(line), stdin)) {
       printf("\n");
