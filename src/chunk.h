@@ -7,10 +7,17 @@
 typedef enum {
   OP_CONSTANT,
   OP_LONG_CONSTANT,
+  OP_NIL,
+  OP_TRUE,
+  OP_FALSE,
+  OP_EQUAL, // having an OpCode for NOT_EQUAL would be more performant
+  OP_GREATER,
+  OP_LESS,
   OP_ADD,
   OP_SUBTRACT,
   OP_MULTIPLY,
   OP_DIVIDE,
+  OP_NOT,
   OP_NEGATE,
   OP_RETURN,
 } OpCode;
