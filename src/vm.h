@@ -12,6 +12,8 @@ typedef struct {
 
   Value stack[STACK_MAX];
   Value *stackTop;
+
+  Obj *objects;
 } VM;
 
 typedef enum {
@@ -22,6 +24,8 @@ typedef enum {
 
 void initVM();
 void freeVM();
+
+extern VM vm;
 
 InterpretResult interpret(const char *source);
 
