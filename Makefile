@@ -1,8 +1,11 @@
 
 CC = clang
 
-clox: main.o debug.o memory.o chunk.o value.o vm.o compiler.o scanner.o object.o
+clox: main.o debug.o memory.o chunk.o value.o vm.o compiler.o scanner.o object.o table.o
 	$(CC) -o clox.exe $^
+
+table.o: src/table.c src/table.h
+	$(CC) -c src/table.c
 
 object.o: src/object.c src/object.h
 	$(CC) -c src/object.c
